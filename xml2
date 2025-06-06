@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.skyscanner.backpack.card.BpkCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="?bpkSpacingM"
+    app:cardCornerRadius="?bpkBorderRadiusM"
+    app:cardElevation="?bpkElevationLevel1">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="?bpkSpacingM">
+
+        <!-- 航班状态标签 -->
+        <com.skyscanner.backpack.badge.BpkBadge
+            android:id="@+id/statusBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:badgeText="延误"
+            app:badgeStyle="warning"
+            app:badgeTextAppearance="?bpkTextStyleLabel" />
+
+        <!-- 航空公司图标 -->
+        <ImageView
+            android:id="@+id/airlineIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/statusBadge"
+            app:layout_constraintStart_margin="?bpkSpacingM"
+            app:srcCompat="?bpkIconAirplane"
+            android:contentDescription="@string/airline_icon" />
+
+        <!-- 航班信息区域 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/airlineIcon"
+            app:layout_constraintStart_margin="?bpkSpacingM"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_margin="?bpkSpacingS">
+
+            <!-- 航班号与时间 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <com.skyscanner.backpack.text.BpkText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:bpkText="SK1234"
+                    app:bpkTextAppearance="?bpkTextStyleHeadingM" />
+
+                <com.skyscanner.backpack.text.BpkText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="?bpkSpacingS"
+                    app:bpkText="14:30"
+                    app:bpkTextAppearance="?bpkTextStyleBodyM"
+                    app:bpkTextColor="?bpkColorTextSecondary" />
+            </LinearLayout>
+
+            <!-- 起降地 -->
+            <com.skyscanner.backpack.text.BpkText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?bpkSpacingXS"
+                app:bpkText="伦敦希思罗 (LHR) → 纽约肯尼迪 (JFK)"
+                app:bpkTextAppearance="?bpkTextStyleBodyM"
+                app:bpkTextColor="?bpkColorTextSecondary" />
+
+            <!-- 行李信息 -->
+            <com.skyscanner.backpack.accordion.BpkAccordion
+                android:id="@+id/baggageAccordion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="?bpkSpacingM"
+                app:bpkAccordionTitle="行李信息"
+                app:bpkAccordionTitleAppearance="?bpkTextStyleBodyM"
+                app:bpkAccordionContentAppearance="?bpkTextStyleBodyS"
+                app:bpkAccordionIcon="?bpkIconChevronDown">
+
+                <com.skyscanner.backpack.text.BpkText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bpkText="免费行李额：23kg × 1件"
+                    app:bpkTextColor="?bpkColorTextSecondary" />
+            </com.skyscanner.backpack.accordion.BpkAccordion>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.skyscanner.backpack.card.BpkCardView>
