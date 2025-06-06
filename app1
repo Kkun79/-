@@ -1,0 +1,61 @@
+import React, { useState } from 'react';
+import { BpkText, BpkButton, BpkGridContainer, BpkGridRow, BpkGridColumn } from '@skyscanner/backpack-web/bpk-component-utils';
+import BpkCalendar, { CALENDAR_SELECTION_TYPE } from 'bpk-component-calendar';
+import BpkDateHelper from 'bpk-component-date-helper';
+import '@skyscanner/backpack-web/bpk-component-calendar/dist/style.scss';
+import './App.scss';
+
+function App() {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectionConfiguration, setSelectionConfiguration] = useState({
+    type: CALENDAR_SELECTION_TYPE.single,
+    date: null,
+  });
+
+  const formatDateFull = (date) => BpkDateHelper.formatDateFull(date, 'zh-CN');
+
+  const onDateSelect = (date) => {
+    setSelectedDate(date);
+    setSelectionConfiguration({
+      type: CALENDAR_SELECTION_TYPE.single,
+      date,
+    });
+  };
+
+  return (
+    <div className="App">
+      <BpkGridContainer>
+        <BpkGridRow>
+          <BpkGridColumn width={12}>
+            <BpkText tagName="h1" textStyle="xxl" className="bpk-margin-vertical-lg">
+              航班时刻表
+            </BpkText>
+          </BpkGridColumn>
+        </BpkGridRow>
+        <BpkGridRow>
+          <BpkGridColumn width={12}>
+            <BpkCalendar
+              id="calendar"
+              onDateSelect={onDateSelect}
+              formatDateFull={formatDateFull}
+              selectionConfiguration={selectionConfiguration}
+              weekStartsOn={1} // 星期一作为一周的开始
+              daysOfWeekFormat="wide"
+              formatMonth={month => BpkDateHelper.formatMonth(month, 'zh-CN')}
+              weekDayLabels={['周日', '周一', '周二', '周三', '周四', '周五', '周六']}
+            />
+          </BpkGridColumn>
+        </BpkGridRow>
+        <BpkGridRow>
+          <BpkGridColumn width={12} className="bpk-margin-vertical-lg">
+            <BpkButton onClick={() => alert('继续选择航班！')}>
+              继续
+            </BpkButton>
+          </BpkGridColumn>
+        </BpkGridRow>
+      </BpkGridContainer>
+    </div>
+  );
+}
+
+export default App;    
